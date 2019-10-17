@@ -1,10 +1,16 @@
 # view-pager-virtual
+
+<a href="https://travis-ci.org/sasatarbuk/view-pager-virtual">
+  <img src="https://api.travis-ci.org/sasatarbuk/view-pager-virtual.svg?branch=master"/>
+</a>
+
 View pager for React that supports virtualized pages. Renders only visible page and up to two offscreen pages, similar
 to Android ViewPager. New pages will not be rendered until the animation is complete, unless swiping is fast.
 
 Uses <a href="https://github.com/react-spring/react-spring">`react-spring`</a> animation framework for good performance.
 
 ## Usage
+
 #### Virtualized
 
 Pages are rendered on demand so you need to specify `count` and expose page content through `render` prop. Usage of
@@ -28,6 +34,7 @@ const Component = () => (
 ``` 
 
 #### Non-virtualized
+
 A non-virtualized version variant of the component is also available. It supports the same API as the former, simply
 import `ViewPager`. This is convenient for a smaller number of pages where rendering is not expensive but offscreen
 preloading might be beneficial (e.g. images only).

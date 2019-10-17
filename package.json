@@ -1,7 +1,7 @@
 {
   "name": "view-pager-virtual",
   "version": "0.1.0",
-  "description": "View pager for React that supports virtualized pages inspired by Android ViewPager.",
+  "description": "View pager for React that supports virtualized pages",
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
@@ -16,7 +16,8 @@
     "viewpager",
     "animation",
     "animated",
-    "virtual"
+    "virtual",
+    "swipe"
   ],
   "author": "Saša Tarbuk",
   "license": "MIT",
@@ -45,6 +46,10 @@
     "react-dom": "^16.10.2",
     "rimraf": "^3.0.0",
     "typescript": "^3.6.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sasatarbuk/view-pager-virtual"
   },
   "jest": {
     "moduleNameMapper": {

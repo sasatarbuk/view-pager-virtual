@@ -1,13 +1,13 @@
 {
   "name": "view-pager-virtual",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "View pager for React that supports virtualized pages",
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
     "clean": "rimraf dist",
     "compile": "tsc",
-    "copy": "copyfiles -f package.json src/ViewPagerVirtual.css dist",
+    "copy": "copyfiles -f package.json LICENSE README.md CHANGELOG.md src/ViewPagerVirtual.css dist",
     "build": "npm-run-all clean --parallel compile copy",
     "test": "jest --collect-coverage"
   },

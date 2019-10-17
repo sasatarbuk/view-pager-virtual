@@ -1,0 +1,60 @@
+{
+  "name": "view-pager-virtual",
+  "version": "0.1.0",
+  "description": "View pager for React that supports virtualized pages inspired by Android ViewPager.",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "scripts": {
+    "clean": "rimraf dist",
+    "compile": "tsc",
+    "copy": "copyfiles -f package.json src/ViewPagerVirtual.css dist",
+    "build": "npm-run-all clean --parallel compile copy",
+    "test": "jest --collect-coverage"
+  },
+  "keywords": [
+    "react",
+    "viewpager",
+    "animation",
+    "animated",
+    "virtual"
+  ],
+  "author": "Saša Tarbuk",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">= 16.8.0",
+    "react-dom": ">= 16.8.0"
+  },
+  "dependencies": {
+    "react-spring": "^8.0.27",
+    "react-use-gesture": "^6.0.7"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
+    "@babel/preset-typescript": "^7.6.0",
+    "@testing-library/react": "^9.3.0",
+    "@types/jest": "^24.0.19",
+    "@types/react": "^16.9.5",
+    "@types/react-dom": "^16.9.1",
+    "babel-jest": "^24.9.0",
+    "copyfiles": "^2.1.1",
+    "jest": "^24.9.0",
+    "npm-run-all": "^4.1.5",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "rimraf": "^3.0.0",
+    "typescript": "^3.6.4"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less|sass|scss)$": "<rootDir>/test/mocks/style.js"
+    },
+    "testMatch": [
+      "<rootDir>/test/*.{ts,tsx}"
+    ],
+    "collectCoverageFrom": [
+      "<rootDir>/src/*.{ts,tsx}"
+    ]
+  }
+}

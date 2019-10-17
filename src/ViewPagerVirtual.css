@@ -1,0 +1,12 @@
+.view-pager-window-viewport {
+  overflow: hidden;
+  position: relative;
+}
+.view-pager-window-pages {
+  pointer-events: none;
+}
+.view-pager-window-page {
+  display: block;
+  position: absolute;
+  top: 0;
+}

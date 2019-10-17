@@ -120,14 +120,12 @@ const ViewPager: React.FC<Props> = (
 
   return (
     <div
-      data-testid={'view-pager-window-viewport'}
       className={'view-pager-window-viewport'}
       style={getViewportStyle(width, height)}
       ref={viewportRef}
       {...gestures()}>
 
       <animated.div
-        data-testid={'view-pager-window-pages'}
         className={'view-pager-window-pages'}
         style={getPagesStyle(spring)}>
 

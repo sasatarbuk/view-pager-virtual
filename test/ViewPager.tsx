@@ -30,7 +30,7 @@ describe('ViewPager', () => {
         render={page => <>{`Page ${page}`}</>}
       />
     );
-    pages = rendered.getByTestId('view-pager-window-pages');
+    pages = (rendered.container.firstElementChild as HTMLElement).firstElementChild as HTMLElement;
   });
 
   afterEach(cleanup);

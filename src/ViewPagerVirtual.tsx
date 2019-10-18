@@ -13,7 +13,7 @@ import ViewPagerTemplate from './ViewPagerTemplate';
  *
  * @param props Props
  */
-const ViewPagerVirtual: React.FC<BaseProps> = ({width, height, count, render}) => {
+const ViewPagerVirtual: React.FC<BaseProps> = ({width, height, count, render, style}) => {
 
   /**
    * Ref to outermost element that receives the gestures. Initialize to fresh div to avoid passing in null
@@ -87,6 +87,7 @@ const ViewPagerVirtual: React.FC<BaseProps> = ({width, height, count, render}) =
       height={height}
       count={count}
       render={render}
+      style={style}
       viewportRef={viewportRef}
       animation={animation}
       gestures={gestures}

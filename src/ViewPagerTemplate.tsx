@@ -36,7 +36,7 @@ interface Props extends BaseProps {
  * @see ViewPagerVirtual
  * @see ViewPager
  */
-const ViewPagerTemplate: React.FC<Props> = ({width, height, render, viewportRef, gestures, animation, pages}) => (
+const ViewPagerTemplate: React.FC<Props> = ({width, height, render, style, viewportRef, gestures, animation, pages}) => (
   <div
     className={'view-pager-window-viewport'}
     style={getViewportStyle(width, height)}
@@ -50,7 +50,10 @@ const ViewPagerTemplate: React.FC<Props> = ({width, height, render, viewportRef,
       {pages.map((page) => (
         <div
           className={'view-pager-window-page'}
-          style={getPageStyle(width, height, page)}
+          style={{
+            ...getPageStyle(width, height, page),
+            ...(style ? style(page) : {}),
+          }}
           key={page}>
 
           <PageMemo page={page}>

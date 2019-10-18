@@ -4,6 +4,7 @@ import {animated} from 'react-spring';
 import {SpringValues} from './types';
 import BaseProps from './BaseProps';
 import './ViewPagerVirtual.css';
+import PageMemo from './PageMemo';
 
 interface Props extends BaseProps {
 
@@ -51,7 +52,11 @@ const ViewPagerTemplate: React.FC<Props> = ({width, height, render, viewportRef,
           className={'view-pager-window-page'}
           style={getPageStyle(width, height, page)}
           key={page}>
-          {render(page)}
+
+          <PageMemo page={page}>
+            {render(page)}
+          </PageMemo>
+
         </div>
       ))}
 

@@ -1,10 +1,11 @@
 import React, {useRef, useState} from 'react';
 import {useSpring} from 'react-spring';
 import {getPageTranslation, getRenderedPages, getTargetPage, isSettled} from './functions';
-import ViewPager from './ViewPager';
 import BaseProps from './BaseProps';
 import AnimatedProps from './AnimatedProps';
-import './ViewPagerVirtual.css';
+import usePagerGestures from './usePagerGestures';
+import {useGesture} from 'react-use-gesture';
+import ViewPagerTemplate from './ViewPagerTemplate';
 
 /**
  * View pager for React that supports virtualized pages similar to Android's ViewPager. Renders only visible page and
@@ -15,9 +16,9 @@ import './ViewPagerVirtual.css';
 const ViewPagerVirtual: React.FC<BaseProps> = ({width, height, count, render}) => {
 
   /**
-   * Animation state and updater
+   * Ref to outermost element that receives the gestures. Initialize to fresh div to avoid passing in null
    */
-  const [spring, setSpring] = useSpring(() => ({x: 0, onFrame}));
+  const viewportRef = useRef<HTMLDivElement>(document.createElement('div'));
 
   /**
    * The difference between center and target page is that center is the one that dictates which pages are rendered
@@ -26,7 +27,12 @@ const ViewPagerVirtual: React.FC<BaseProps> = ({width, height, count, render}) =
   const [page, setPage] = useState({center: 0, target: 0});
 
   /**
-   * Page state/updater reference for access in handler methods
+   * Animation state and updater
+   */
+  const [animation, setAnimation] = useSpring(() => ({x: 0, onFrame}));
+
+  /**
+   * Page state reference for access in handler methods
    */
   const pageRef = useRef(page);
 
@@ -35,10 +41,6 @@ const ViewPagerVirtual: React.FC<BaseProps> = ({width, height, count, render}) =
    * is the final x translation for the target page
    */
   const settleXRef = useRef<number | null>(null);
-
-  //  Update instance variables on each state render
-  pageRef.current = page;
-  settleXRef.current = getPageTranslation(page.target, width);
 
   /**
    * Execute on each animation frame and check if settling page has moved close enough to it's intended position so that
@@ -65,22 +67,30 @@ const ViewPagerVirtual: React.FC<BaseProps> = ({width, height, count, render}) =
    */
   function onDragEnd({direction: [directionX]}: any) {
     setPage(page => {
-      const target = getTargetPage(spring.x.getValue(), width, count, directionX);
+      const target = getTargetPage(animation.x.getValue(), width, count, directionX);
       const center = page.target === page.center ? page.center : target;
       return {center, target};
     });
   }
 
+  //  Update instance variables on each render
+  pageRef.current = page;
+  settleXRef.current = getPageTranslation(page.target, width);
+
+  const {onDragStart, onDrag} = usePagerGestures(viewportRef, page.target, width, count, [animation, setAnimation]);
+  const gestures = useGesture({onDragStart, onDrag, onDragEnd});
+  const pages = getRenderedPages(page.center, width);
+
   return (
-    <ViewPager
+    <ViewPagerTemplate
       width={width}
       height={height}
       count={count}
       render={render}
-      targetPage={page.target}
-      renderedPages={getRenderedPages(page.center, width)}
-      springState={[spring, setSpring]}
-      onDragEnd={onDragEnd}
+      viewportRef={viewportRef}
+      animation={animation}
+      gestures={gestures}
+      pages={pages}
     />
   );
 };

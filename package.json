@@ -1,6 +1,6 @@
 {
   "name": "view-pager-virtual",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "View pager for React that supports virtualized pages",
   "main": "index.js",
   "types": "index.d.ts",

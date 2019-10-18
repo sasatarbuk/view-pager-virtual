@@ -2,7 +2,8 @@ import React from 'react';
 import {act, cleanup, render, RenderResult} from '@testing-library/react';
 import {GestureHandlers} from 'react-use-gesture/dist/types';
 import ViewPager from '../src/ViewPager';
-import {gesture, sleep} from './util/util';
+import {gesture, sleep} from './common/util';
+import {COLORS} from './common/constants';
 
 let handlers: GestureHandlers;
 
@@ -28,6 +29,7 @@ describe('ViewPager', () => {
         height={400}
         count={5}
         render={page => <>{`Page ${page}`}</>}
+        style={page => ({color: COLORS[page]})}
       />
     );
     pages = (rendered.container.firstElementChild as HTMLElement).firstElementChild as HTMLElement;
@@ -37,6 +39,13 @@ describe('ViewPager', () => {
 
   it('renders all pages', () => {
     expect(rendered.queryAllByText('Page', {exact: false})).toHaveLength(5);
+  });
+
+  it('renders pages with styles injected', () => {
+    COLORS.forEach((color, index) => {
+      const page = rendered.getByText(`Page ${index}`);
+      expect(page.style.color).toBe(color);
+    });
   });
 
   it('switches to next page when dragged left', async () => {

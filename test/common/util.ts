@@ -1,4 +1,4 @@
-import {FullGestureState, Coordinates, Vector2, UseGestureEvent} from 'react-use-gesture/dist/types';
+import {Coordinates, FullGestureState} from 'react-use-gesture/dist/types';
 
 export function gesture(values: object): FullGestureState<Coordinates> {
   return {

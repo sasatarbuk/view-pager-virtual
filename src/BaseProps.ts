@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {CSSProperties} from 'react';
 
 interface BaseProps {
 
@@ -23,6 +23,13 @@ interface BaseProps {
    * @param page Index of the page to render
    */
   render: (page: number) => React.ReactNode;
+
+  /**
+   * Function to return style to inject into page element
+   *
+   * @param page Index of the page to inject style into
+   */
+  style?: (page: number) => CSSProperties;
 }
 
 export default BaseProps;

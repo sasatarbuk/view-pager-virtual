@@ -1,4 +1,5 @@
 import {getPageTranslation} from './functions';
+import {SpringValues} from './types';
 
 /**
  * Create viewport (drag area) style
@@ -14,10 +15,10 @@ export const getViewportStyle = (width: number, height: number) => ({
 /**
  * Create style for the container that holds rendered pages
  *
- * @param spring Spring animated values
+ * @param animation Spring animated values
  */
-export const getPagesStyle = (spring: any) => ({
-  transform: spring.x.interpolate((x: number) => `translateX(${x}px)`),
+export const getPagesStyle = (animation: SpringValues) => ({
+  transform: animation.x.interpolate((x: number) => `translateX(${x}px)`),
 });
 
 /**
